@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap');
+
+@import 'tailwindcss';
+
+@layer base {
+  /* Cyber theme defaults */
+  body {
+    background-color: #050815;
+    color: #f3f4f6;
+  }
+  
+  /* Always dark mode for cyber theme */
+  .dark {
+    color-scheme: dark;
+  }
+}
+
+@layer utilities {
+  /* Cyber scrollbar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgb(10 14 39);
+    border-left: 1px solid rgba(16, 185, 129, 0.1);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgb(16, 185, 129) 0%, rgb(6, 182, 212) 100%);
+    border-radius: 9999px;
+    border: 2px solid rgb(10 14 39);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgb(6, 182, 212) 0%, rgb(16, 185, 129) 100%);
+    box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  }
+
+  /* Content protection */
+  .protected-content {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
+
+  /* Custom container */
+  .container-custom {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container-custom {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    transition: all 0.3s;
+  }
+
+  .card-hover:hover {
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    transform: translateY(-0.25rem);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(to right, #0ea5e9, #a855f7);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
