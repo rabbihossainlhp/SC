@@ -68,7 +68,7 @@ const ProductsListingPage = () => {
             className="max-w-3xl"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-primary-400">IoT & Electronics</span>
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-green-400">IoT & Electronics</span>
               <span className="text-white"> Store</span>
             </h1>
             <p className="text-xl text-gray-300">

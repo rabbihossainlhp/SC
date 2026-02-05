@@ -209,15 +209,15 @@ const AboutPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-soft hover:shadow-soft-lg transition-shadow"
+                className="bg-cyber-dark/50 backdrop-blur-xl rounded-lg p-6 border border-primary-500/20 hover:border-primary-500/50 transition-all hover:shadow-neon-green group"
               >
-                <div className="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400 mb-4">
+                <div className="w-16 h-16 bg-primary-500/10 border border-primary-500/30 rounded-lg flex items-center justify-center text-primary-400 mb-4 group-hover:bg-primary-500/20 transition-all">
                   {value.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                <h3 className="text-xl font-semibold text-white mb-2">
                   {value.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   {value.description}
                 </p>
               </motion.div>
@@ -227,18 +227,21 @@ const AboutPage = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
-        <div className="container-custom">
+      <section className="py-16 bg-cyber-dark border-t border-primary-500/20 relative">
+        <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-5"></div>
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Meet Our Team
+            <h2 className="text-3xl font-bold text-white mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-accent-cyan">
+                Meet Our Team
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Passionate educators and technologists dedicated to your success
             </p>
           </motion.div>
@@ -256,15 +259,15 @@ const AboutPage = () => {
                 <img
                   src={member.image}
                   alt={member.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
+                  className="w-32 h-32 rounded-full mx-auto mb-4 object-cover border-2 border-primary-500/30 shadow-neon-green"
                 />
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                <h3 className="text-lg font-semibold text-white mb-1">
                   {member.name}
                 </h3>
-                <p className="text-primary-600 dark:text-primary-400 mb-2">
+                <p className="text-sm text-primary-400 mb-2">
                   {member.role}
                 </p>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-sm text-gray-400">
                   {member.bio}
                 </p>
               </motion.div>
@@ -274,28 +277,38 @@ const AboutPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
-        <div className="container-custom">
+      {/* CTA Section */}
+      <section className="py-16 bg-cyber-darker relative">
+        <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-5"></div>
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl p-12 text-center text-white"
+            className="bg-gradient-to-r from-primary-600/20 to-secondary-600/20 backdrop-blur-xl border border-primary-500/30 rounded-2xl p-12 text-center text-white shadow-neon-green"
           >
             <h2 className="text-3xl font-bold mb-4">
-              Ready to Start Learning?
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon via-primary-400 to-secondary-400">
+                Ready to Start Learning?
+              </span>
             </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 mb-8 max-w-2xl mx-auto">
               Join thousands of students already learning on Spy Code
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/courses">
-                <Button variant="secondary" size="lg">
+                <Button 
+                  size="lg"
+                  className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-neon-green"
+                >
                   Browse Courses
                 </Button>
               </Link>
               <Link to="/signup">
-                <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-white hover:text-primary-600">
+                <Button 
+                  size="lg" 
+                  className="bg-cyber-grid border-2 border-secondary-500/50 text-secondary-300 hover:bg-secondary-500/10 hover:border-secondary-400 hover:text-secondary-200 transition-all"
+                >
                   Sign Up Free
                 </Button>
               </Link>

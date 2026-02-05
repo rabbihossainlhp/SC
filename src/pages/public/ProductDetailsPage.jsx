@@ -69,7 +69,7 @@ const ProductDetailsPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-gray-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
+    <div className="min-h-screen bg-linar-to-br from-gray-50 via-gray-50 to-purple-50 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800">
       {/* Breadcrumb */}
       <div className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800">
         <div className="container-custom py-4">
@@ -165,7 +165,7 @@ const ProductDetailsPage = () => {
                             key={index}
                             className="flex items-start gap-3 p-3 rounded-lg bg-gray-50 dark:bg-gray-800"
                           >
-                            <CheckCircle className="w-5 h-5 text-secondary-500 flex-shrink-0 mt-0.5" />
+                            <CheckCircle className="w-5 h-5 text-secondary-500 shrink-0 mt-0.5" />
                             <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                           </div>
                         ))}
@@ -429,7 +429,7 @@ const ProductDetailsPage = () => {
               </Card>
 
               {/* Related Products Link */}
-              <Card padding="md" className="bg-gradient-to-br from-secondary-50 to-primary-50 dark:from-secondary-900/20 dark:to-primary-900/20">
+              <Card padding="md" className="bg-linar-to-br from-secondary-50 to-primary-50 dark:from-secondary-900/20 dark:to-primary-900/20">
                 <div className="flex items-center justify-between">
                   <div>
                     <h4 className="font-semibold text-gray-900 dark:text-white mb-1">

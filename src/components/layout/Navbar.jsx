@@ -31,17 +31,16 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
+          <Link to="/" className="flex items-center space-x-4 group">
             <div className="relative w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center border border-primary-400/50 shadow-neon-green group-hover:shadow-neon-cyan transition-all">
               <span className="text-white font-bold text-xl font-mono">&lt;/&gt;</span>
               <div className="absolute inset-0 bg-primary-400/20 rounded-lg blur group-hover:bg-secondary-400/20 transition-all"></div>
             </div>
-            <div className="hidden sm:block">
-              <span className="text-xl font-bold font-mono">
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon via-primary-400 to-secondary-400">
-                  &lt;SPY_CODE/&gt;
-                </span>
+            <div className="flex flex-col -space-y-1">
+              <span className="text-xl font-bold bg-gradient-to-r from-[#00ff41] via-[#34d399] to-[#22d3ee] text-transparent bg-clip-text">
+                Spy Code
               </span>
+              <span className="text-[10px] font-mono text-gray-500 tracking-wider">LEARN.BUILD.INNOVATE</span>
             </div>
           </Link>
 
@@ -96,7 +95,7 @@ const Navbar = () => {
             >
               <ShoppingCart className="w-5 h-5" />
               {cartItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-primary-500 to-primary-600 text-white text-xs font-bold font-mono rounded-full w-5 h-5 flex items-center justify-center shadow-neon-green animate-pulse">
+                <span className="absolute -top-1 -right-1 bg-linear-to-r from-primary-500 to-primary-600 text-white text-xs font-bold font-mono rounded-full w-5 h-5 flex items-center justify-center shadow-neon-green animate-pulse">
                   {cartItems()}
                 </span>
               )}
@@ -108,7 +107,7 @@ const Navbar = () => {
                 to="/dashboard"
                 className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium font-mono text-gray-300 hover:text-primary-400 hover:bg-primary-500/10 transition-all border border-transparent hover:border-primary-500/30"
               >
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-sm font-bold border border-primary-400/50 shadow-neon-green">
+                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-sm font-bold border border-primary-400/50 shadow-neon-green">
                   {user?.name?.charAt(0) || 'U'}
                 </div>
                 <span className="hidden xl:block">{user?.name}</span>
@@ -117,7 +116,7 @@ const Navbar = () => {
               <Link to="/login" className="hidden md:block">
                 <Button 
                   size="sm" 
-                  className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-neon-green"
+                  className="bg-linear-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-neon-green"
                   icon={<LogIn className="w-4 h-4" />}
                 >
                   Login
@@ -187,7 +186,7 @@ const Navbar = () => {
                 <Link
                   to="/login"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium bg-gradient-to-r from-primary-600 to-primary-500 text-white hover:from-primary-500 hover:to-primary-400 transition-all shadow-neon-green"
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg text-base font-medium bg-linear-to-r from-primary-600 to-primary-500 text-white hover:from-primary-500 hover:to-primary-400 transition-all shadow-neon-green"
                 >
                   <LogIn className="w-5 h-5" />
                   Login

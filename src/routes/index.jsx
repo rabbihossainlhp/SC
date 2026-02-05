@@ -11,6 +11,7 @@ import {
   CourseDetailsPage, 
   ProductDetailsPage,
   DigitalProductsPage,
+  DigitalProductDetailsPage,
   ContactPage,
   PricingPage,
   CheckoutPage
@@ -42,6 +43,7 @@ const router = createBrowserRouter([
       { path: 'products', element: <ProductsListingPage /> },
       { path: 'products/:slug', element: <ProductDetailsPage /> },
       { path: 'digital-products', element: <DigitalProductsPage /> },
+      { path: 'digital-products/:slug', element: <DigitalProductDetailsPage /> },
       { path: 'about', element: <AboutPage /> },
       { path: 'contact', element: <ContactPage /> },
       { path: 'pricing', element: <PricingPage /> },

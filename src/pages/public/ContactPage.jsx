@@ -77,20 +77,29 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-cyber-darker">
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-primary-600 to-secondary-600 text-white py-20">
-        <div className="container-custom">
+      <section className="relative bg-cyber-dark border-b border-primary-500/20 py-20 overflow-hidden">
+        {/* Cyber Background */}
+        <div className="absolute inset-0 bg-cyber-grid bg-grid opacity-5"></div>
+        <div className="absolute top-1/4 -left-48 w-96 h-96 bg-primary-500/10 rounded-full blur-[120px] animate-pulse-glow"></div>
+        <div className="absolute bottom-1/4 -right-48 w-96 h-96 bg-secondary-500/10 rounded-full blur-[120px] animate-pulse-glow"></div>
+        
+        <div className="container-custom relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl mx-auto text-center"
           >
-            <MessageCircle className="w-16 h-16 mx-auto mb-6" />
+            <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-neon-green">
+              <MessageCircle className="w-10 h-10 text-white" />
+            </div>
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Get in Touch
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-neon via-primary-400 to-secondary-400">
+                Get in Touch
+              </span>
             </h1>
-            <p className="text-xl text-white/90">
+            <p className="text-xl text-gray-300">
               Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
             </p>
           </motion.div>
@@ -104,9 +113,10 @@ const ContactPage = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-8"
+              className="bg-cyber-dark/50 backdrop-blur-sm border border-primary-500/20 rounded-lg p-8"
             >
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+              <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                <Send className="w-6 h-6 text-primary-400" />
                 Send us a Message
               </h2>
 
@@ -114,10 +124,10 @@ const ContactPage = () => {
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg"
+                  className="mb-6 p-4 bg-accent-neon/10 border border-accent-neon/30 rounded-lg"
                 >
-                  <p className="text-green-800 dark:text-green-300">
-                    ✓ Message sent successfully! We'll get back to you soon.
+                  <p className="text-accent-neon flex items-center gap-2">
+                    <span>✓</span> Message sent successfully! We'll get back to you soon.
                   </p>
                 </motion.div>
               )}
@@ -125,7 +135,7 @@ const ContactPage = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Your Name *
                     </label>
                     <input
@@ -134,13 +144,13 @@ const ContactPage = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 bg-cyber-darker border border-primary-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-500"
                       placeholder="John Doe"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 mb-2">
                       Your Email *
                     </label>
                     <input
@@ -149,14 +159,14 @@ const ContactPage = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 bg-cyber-darker border border-primary-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-500"
                       placeholder="john@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Subject *
                   </label>
                   <input
@@ -165,13 +175,13 @@ const ContactPage = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 bg-cyber-darker border border-primary-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-500"
                     placeholder="How can we help?"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
                     Message *
                   </label>
                   <textarea
@@ -180,7 +190,7 @@ const ContactPage = () => {
                     onChange={handleChange}
                     required
                     rows="6"
-                    className="w-full px-4 py-3 bg-gray-50 dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 text-gray-900 dark:text-white resize-none"
+                    className="w-full px-4 py-3 bg-cyber-darker border border-primary-500/30 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-primary-500 text-white placeholder-gray-500 resize-none"
                     placeholder="Tell us more about your inquiry..."
                   />
                 </div>
@@ -192,6 +202,7 @@ const ContactPage = () => {
                   fullWidth
                   disabled={isSubmitting}
                   icon={<Send className="w-5 h-5" />}
+                  className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 shadow-neon-green"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
                 </Button>
@@ -205,19 +216,19 @@ const ContactPage = () => {
               transition={{ delay: 0.2 }}
               className="mt-8"
             >
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              <h3 className="text-xl font-bold text-white mb-4">
                 Frequently Asked Questions
               </h3>
               <div className="space-y-4">
                 {faqs.map((faq, index) => (
                   <div
                     key={index}
-                    className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-6"
+                    className="bg-cyber-dark/50 backdrop-blur-sm border border-primary-500/20 rounded-lg p-6 hover:border-primary-500/40 transition-all"
                   >
-                    <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
+                    <h4 className="font-semibold text-white mb-2">
                       {faq.question}
                     </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
+                    <p className="text-gray-400">
                       {faq.answer}
                     </p>
                   </div>
@@ -234,8 +245,8 @@ const ContactPage = () => {
               transition={{ delay: 0.1 }}
               className="space-y-6"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6">
+              <div className="bg-cyber-dark/50 backdrop-blur-sm border border-primary-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-white mb-6">
                   Contact Information
                 </h3>
                 
@@ -243,24 +254,24 @@ const ContactPage = () => {
                   {contactInfo.map((info, index) => (
                     <div
                       key={index}
-                      className="flex items-start gap-4 p-4 rounded-lg bg-gray-50 dark:bg-gray-900"
+                      className="flex items-start gap-4 p-4 rounded-lg bg-cyber-darker/50 border border-primary-500/10 hover:border-primary-500/30 transition-all"
                     >
-                      <div className="flex-shrink-0 w-12 h-12 bg-primary-100 dark:bg-primary-900/30 rounded-lg flex items-center justify-center text-primary-600 dark:text-primary-400">
+                      <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-500/20 to-secondary-500/20 rounded-lg flex items-center justify-center text-primary-400 border border-primary-500/30">
                         {info.icon}
                       </div>
                       <div className="flex-1">
-                        <h4 className="font-medium text-gray-900 dark:text-white mb-1">
+                        <h4 className="font-medium text-white mb-1">
                           {info.title}
                         </h4>
                         {info.link && info.link !== '#' ? (
                           <a
                             href={info.link}
-                            className="text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                            className="text-gray-400 hover:text-primary-400 transition-colors"
                           >
                             {info.details}
                           </a>
                         ) : (
-                          <p className="text-gray-600 dark:text-gray-400">
+                          <p className="text-gray-400">
                             {info.details}
                           </p>
                         )}
@@ -271,8 +282,8 @@ const ContactPage = () => {
               </div>
 
               {/* Social Links */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-cyber-dark/50 backdrop-blur-sm border border-primary-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Follow Us
                 </h3>
                 <div className="flex gap-3">
@@ -280,7 +291,7 @@ const ContactPage = () => {
                     <a
                       key={platform}
                       href="#"
-                      className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-lg flex items-center justify-center text-gray-600 dark:text-gray-400 hover:bg-primary-600 hover:text-white dark:hover:bg-primary-600 transition-colors"
+                      className="w-10 h-10 bg-cyber-darker border border-primary-500/30 rounded-lg flex items-center justify-center text-gray-400 hover:bg-primary-500/20 hover:text-primary-400 hover:border-primary-500/50 transition-all"
                       aria-label={platform}
                     >
                       {platform.charAt(0)}
@@ -290,12 +301,12 @@ const ContactPage = () => {
               </div>
 
               {/* Map Placeholder */}
-              <div className="bg-white dark:bg-gray-800 rounded-lg shadow-soft p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
+              <div className="bg-cyber-dark/50 backdrop-blur-sm border border-primary-500/20 rounded-lg p-6">
+                <h3 className="text-xl font-bold text-white mb-4">
                   Our Location
                 </h3>
-                <div className="aspect-video bg-gray-200 dark:bg-gray-700 rounded-lg flex items-center justify-center">
-                  <MapPin className="w-12 h-12 text-gray-400" />
+                <div className="aspect-video bg-cyber-darker border border-primary-500/20 rounded-lg flex items-center justify-center">
+                  <MapPin className="w-12 h-12 text-primary-400/50" />
                 </div>
               </div>
             </motion.div>

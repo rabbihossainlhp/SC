@@ -6,6 +6,7 @@ export { default as CartPage } from './CartPage';
 export { default as ContactPage } from './ContactPage';
 export { default as CourseDetailsPage } from './CourseDetailsPage';
 export { default as DigitalProductsPage } from './DigitalProductsPage';
+export { default as DigitalProductDetailsPage } from './DigitalProductDetailsPage';
 export { default as ProductDetailsPage } from './ProductDetailsPage';
 
 // Placeholder exports
