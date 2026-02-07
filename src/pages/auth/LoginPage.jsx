@@ -137,6 +137,34 @@ const LoginPage = () => {
               <Terminal className="w-5 h-5 mr-2" />
               Sign In
             </Button>
+            
+            {/* Quick Test Logins */}
+            <div className="grid grid-cols-2 gap-3 pt-4 border-t border-primary-500/20">
+              <Button
+                type="button"
+                onClick={() => {
+                  login({ name: 'Admin User', email: 'admin@spycode.com', role: 'admin' });
+                  navigate('/admin/dashboard');
+                }}
+                variant="outline"
+                size="sm"
+                className="border-primary-500/30 hover:border-primary-500/50"
+              >
+                Login as Admin
+              </Button>
+              <Button
+                type="button"
+                onClick={() => {
+                  login({ name: 'John Student', email: 'student@spycode.com', role: 'student' });
+                  navigate('/student/dashboard');
+                }}
+                variant="outline"
+                size="sm"
+                className="border-secondary-500/30 hover:border-secondary-500/50"
+              >
+                Login as Student
+              </Button>
+            </div>
           </form>
 
           {/* Divider */}

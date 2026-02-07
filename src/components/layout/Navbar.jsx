@@ -104,10 +104,10 @@ const Navbar = () => {
             {/* User Menu */}
             {isAuthenticated ? (
               <Link
-                to="/dashboard"
+                to={user?.role === 'admin' ? '/admin/dashboard' : '/student/dashboard'}
                 className="hidden md:flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium font-mono text-gray-300 hover:text-primary-400 hover:bg-primary-500/10 transition-all border border-transparent hover:border-primary-500/30"
               >
-                <div className="w-8 h-8 rounded-lg bg-linear-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-sm font-bold border border-primary-400/50 shadow-neon-green">
+                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white text-sm font-bold border border-primary-400/50 shadow-neon-green">
                   {user?.name?.charAt(0) || 'U'}
                 </div>
                 <span className="hidden xl:block">{user?.name}</span>
@@ -116,7 +116,7 @@ const Navbar = () => {
               <Link to="/login" className="hidden md:block">
                 <Button 
                   size="sm" 
-                  className="bg-linear-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-neon-green"
+                  className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 text-white shadow-neon-green"
                   icon={<LogIn className="w-4 h-4" />}
                 >
                   Login
