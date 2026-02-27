@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, User, Terminal, Shield, CheckCircle } from 'lucide-react';
 import Button from '../../components/common/Button';
@@ -15,23 +15,48 @@ export const SignupPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  const [error, setError] = useState('');
 
-  const login = useUserStore(state => state.login);
+  const navigate = useNavigate();
+  const { register, loading } = useUserStore();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      setError('Passwords do not match!');
       return;
     }
-    // Mock signup - in real app, this would call API
-    login({
-      id: 1,
+    
+    if (formData.password.length < 8) {
+      setError('Password must be at least 8 characters long');
+      return;
+    }
+    
+    const result = await register({
       name: formData.name,
       email: formData.email,
-      avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(formData.name)}&background=0ea5e9&color=fff`
+      password: formData.password
     });
-    window.location.href = '/dashboard';
+    
+    if (result.success) {
+      // Get user from result
+      const { user } = result;
+      
+      console.log('Registration successful, user:', user);
+      
+      // Redirect based on role
+      if (user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else if (user.role === 'instructor') {
+        navigate('/dashboard');
+      } else {
+        navigate('/student/dashboard');
+      }
+    } else {
+      setError(result.error || 'Registration failed. Please try again.');
+    }
   };
 
   const handleChange = (e) => {
@@ -192,16 +217,23 @@ export const SignupPage = () => {
               </label>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Submit Button */}
             <Button 
               type="submit" 
               fullWidth 
               size="lg"
-              disabled={!agreedToTerms}
+              disabled={!agreedToTerms || loading}
               className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 shadow-neon-green"
             >
               <Terminal className="w-5 h-5 mr-2" />
-              Create Account
+              {loading ? 'Creating Account...' : 'Create Account'}
             </Button>
           </form>
 

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, Terminal, Shield } from 'lucide-react';
 import Button from '../../components/common/Button';
@@ -10,19 +10,34 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [remember, setRemember] = useState(false);
+  const [error, setError] = useState('');
   
-  const login = useUserStore(state => state.login);
+  const navigate = useNavigate();
+  const { login, loading } = useUserStore();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Mock login - in real app, this would call API
-    login({
-      id: 1,
-      name: 'John Doe',
-      email: email,
-      avatar: 'https://ui-avatars.com/api/?name=John+Doe&background=0ea5e9&color=fff'
-    });
-    window.location.href = '/dashboard';
+    setError('');
+    
+    const result = await login(email, password);
+    
+    if (result.success) {
+      // Get user from result
+      const { user } = result;
+      
+      console.log('Login successful, user:', user);
+      
+      // Redirect based on role
+      if (user.role === 'admin') {
+        navigate('/admin/dashboard');
+      } else if (user.role === 'instructor') {
+        navigate('/dashboard');
+      } else {
+        navigate('/student/dashboard');
+      }
+    } else {
+      setError(result.error || 'Login failed. Please try again.');
+    }
   };
 
   return (
@@ -127,39 +142,53 @@ const LoginPage = () => {
               </Link>
             </div>
 
+            {/* Error Message */}
+            {error && (
+              <div className="p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-sm">
+                {error}
+              </div>
+            )}
+
             {/* Submit Button */}
             <Button 
               type="submit" 
               fullWidth 
               size="lg"
+              disabled={loading}
               className="bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-500 hover:to-primary-400 shadow-neon-green"
             >
               <Terminal className="w-5 h-5 mr-2" />
-              Sign In
+              {loading ? 'Signing In...' : 'Sign In'}
             </Button>
             
             {/* Quick Test Logins */}
             <div className="grid grid-cols-2 gap-3 pt-4 border-t border-primary-500/20">
               <Button
                 type="button"
-                onClick={() => {
-                  login({ name: 'Admin User', email: 'admin@spycode.com', role: 'admin' });
-                  navigate('/admin/dashboard');
+                onClick={async () => {
+                  setEmail('admin@spycode.com');
+                  setPassword('Admin@123');
+                  const result = await login('admin@spycode.com', 'Admin@123');
+                  if (result.success) navigate('/admin/dashboard');
                 }}
                 variant="outline"
                 size="sm"
+                disabled={loading}
                 className="border-primary-500/30 hover:border-primary-500/50"
               >
                 Login as Admin
               </Button>
               <Button
                 type="button"
-                onClick={() => {
-                  login({ name: 'John Student', email: 'student@spycode.com', role: 'student' });
-                  navigate('/student/dashboard');
+                onClick={async () => {
+                  setEmail('student@spycode.com');
+                  setPassword('Student@123');
+                  const result = await login('student@spycode.com', 'Student@123');
+                  if (result.success) navigate('/student/dashboard');
                 }}
                 variant="outline"
                 size="sm"
+                disabled={loading}
                 className="border-secondary-500/30 hover:border-secondary-500/50"
               >
                 Login as Student
